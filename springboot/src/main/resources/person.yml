@@ -1,0 +1,10 @@
+person:
+  age: 18
+  last-name: fq
+  boss: true
+  birth: 2019/2/3
+  maps: {k1: v1, k2: v2}
+  lists: [adjkl,aldjla,lakd]
+  dog:
+    name: dog1
+    age: 14

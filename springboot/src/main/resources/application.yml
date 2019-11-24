@@ -1,0 +1,57 @@
+person:
+  age: 18
+  last-name: fq
+  boss: true
+  birth: 2019/2/3
+  maps: {k1: v1, k2: v2}
+  lists: [adjkl,aldjla,lakd]
+  dog:
+    name: dog1
+    age: 14
+
+# 开启debug模式，输出自动配置匹配报告
+debug: true
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+
+spring:
+  #   禁用模板缓存
+  thymeleaf:
+    cache: false
+  #  国际化基础包
+  messages:
+    basename: i18n.login
+  # 数据库配置相关
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/db01
+    driver-class-name: com.mysql.jdbc.Driver
+    #    schema:
+    #      - classpath:department.sql
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    # Druid属性 需要自己配置config文件 注入 DataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+# jpa相关配置
+  jpa:
+    show-sql: true
+    #    指明自定义数据源类型
+

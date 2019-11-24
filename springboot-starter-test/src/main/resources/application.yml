@@ -1,0 +1,4 @@
+fq:
+  hello:
+    prefix: pre
+    suffix: hello world
