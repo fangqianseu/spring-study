@@ -15,8 +15,8 @@ public class UserController {
 
     @GetMapping("/jpa/{id}")
     public Dept getUser(@PathVariable("id") Integer id) {
-        Dept user = deptRepository.findOne(id);
-        return user;
+        Dept dept = deptRepository.findOne(id);
+        return dept;
     }
 
     @GetMapping("/jpa")

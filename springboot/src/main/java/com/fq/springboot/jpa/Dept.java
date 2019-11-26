@@ -20,6 +20,8 @@ public class Dept {
     @Column(name = "dept_name")
     private String deptName;
 
+    //  不和sql表格对应
+    //    @Transient
     @Column(name = "db_source")
     private String daSource;
 }

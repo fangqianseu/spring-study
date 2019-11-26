@@ -2,7 +2,6 @@ package com.fq.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
@@ -17,8 +16,8 @@ public class MainApp {
         SpringApplication.run(MainApp.class, args);
     }
 
-    @Bean
     //  添加自定义的 MyViewResolver
+//    @Bean
     public ViewResolver myViewReolver() {
         return new MyViewResolver();
     }
