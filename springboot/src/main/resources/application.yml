@@ -31,8 +31,10 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     #    schema:
     #      - classpath:department.sql
-    type: com.alibaba.druid.pool.DruidDataSource
 
+
+    #    指明自定义数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
     # Druid属性 需要自己配置config文件 注入 DataSource
     initialSize: 5
     minIdle: 5
@@ -53,5 +55,3 @@ spring:
 # jpa相关配置
   jpa:
     show-sql: true
-    #    指明自定义数据源类型
-

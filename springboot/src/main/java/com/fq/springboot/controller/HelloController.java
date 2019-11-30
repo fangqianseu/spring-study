@@ -2,6 +2,7 @@ package com.fq.springboot.controller;
 
 
 import com.fq.springboot.exception.UserNotExistException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 @Controller
+@Slf4j
 public class HelloController {
-
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Autowired
@@ -50,6 +52,13 @@ public class HelloController {
     public String success(Map<String, Object> map) {
         map.put("hello", "<h1>你好</h1>");
         map.put("users", Arrays.asList("zhangsan", "lisi", "wangwu"));
+        return "success";
+    }
+
+    @RequestMapping("/date")
+    @ResponseBody
+    public String date(Date date) {
+        log.info(date.toString());
         return "success";
     }
 

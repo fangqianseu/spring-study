@@ -4,10 +4,16 @@ import com.fq.springboot.component.LoginHandlerInterceptor;
 import com.fq.springboot.component.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
 //@EnableWebMvc   不要接管SpringMVC
@@ -22,7 +28,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     //所有的WebMvcConfigurerAdapter组件都会一起起作用
-    @Bean //将组件注册在容器
+//    @Bean //将组件注册在容器
     public WebMvcConfigurerAdapter webMvcConfigurerAdapter() {
         WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
             @Override
@@ -42,6 +48,31 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
             }
         };
         return adapter;
+    }
+
+    /**
+     * 添加自定义类型转换
+     * 也可添加 formater
+     * @param registry
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new Converter<String, Date>() {
+            @Override
+            public Date convert(String s) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                if ("".equals(s) || s == null) {
+                    return null;
+                }
+                try {
+                    return simpleDateFormat.parse(s);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        });
     }
 
     @Bean
